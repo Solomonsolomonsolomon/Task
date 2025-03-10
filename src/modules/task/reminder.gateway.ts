@@ -8,8 +8,8 @@ import {
 import { Server, Socket } from 'socket.io';
 import { Injectable, Logger } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
-import config from '../../config/config'; // Your secret key
-const { SECRET } = config;
+import { ConfigService } from '@nestjs/config';
+
 @WebSocketGateway({
   cors: {
     origin: '*',
@@ -28,6 +28,8 @@ export class RemindersGateway
 
   handleConnection(client: Socket, ...args: any[]) {
     // Extract token from query
+    const configService=new ConfigService();
+    const SECRET=configService.get('SECRET')
     const token = client.handshake.query.token;
     if (token && typeof token === 'string') {
       try {

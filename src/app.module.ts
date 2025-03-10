@@ -17,6 +17,12 @@ import { EmailModule } from './modules/email/email.module';
 @Module({
   controllers: [AppController],
   imports: [
+
+   ConfigModule.forRoot({
+    isGlobal:true,
+    envFilePath: '.env'
+   }),
+
     BullModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

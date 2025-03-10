@@ -4,7 +4,7 @@ import { TaskController } from './task.controller';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Task } from './task.entity';
 import { BullModule } from '@nestjs/bull';
-import { UserRepository } from '../user/user.repository';
+
 import { UserModule } from '../user/user.module';
 import { User } from '../user/user.entity';
 import { RemindersGateway } from './reminder.gateway';
@@ -25,7 +25,7 @@ import { RemindersProcessor } from './reminder.processor';
   ],
   providers: [
     TaskService,
-    UserRepository,
+
     RemindersProcessor,
     RemindersGateway,
   ],

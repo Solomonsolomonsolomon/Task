@@ -9,7 +9,7 @@ import { EntityRepository } from '@mikro-orm/mysql';
 import { TaskRepository } from './task.repository';
 import { User } from '../user/user.entity';
 
-@Entity()
+@Entity({tableName:'tasks'})
 export class Task {
   @PrimaryKey()
   id!: number;

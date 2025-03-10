@@ -7,17 +7,19 @@ import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
 import { User } from './user.entity';
 import { IUserRO } from '../../@types/user.types';
 
-import config from '../../config/config';
+
 import { InjectRepository } from '@mikro-orm/nestjs';
-const { SECRET } = config;
+import { ConfigService } from '@nestjs/config';
+
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
+    private configService:ConfigService
   ) {}
-
+   
   async findAll(): Promise<User[]> {
     return this.userRepository.findAll();
   }
@@ -100,8 +102,9 @@ export class UserService {
   generateJWT(user: User) {
     const today = new Date();
     const exp = new Date(today);
+    const SECRET=this.configService.get('SECRET')
     exp.setDate(today.getDate() + 60);
-
+ 
     return jwt.sign(
       {
         email: user.email,

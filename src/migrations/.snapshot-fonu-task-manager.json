@@ -44,7 +44,7 @@
           "mappedType": "string"
         }
       },
-      "name": "user",
+      "name": "users",
       "indexes": [
         {
           "keyName": "PRIMARY",
@@ -178,14 +178,14 @@
           "mappedType": "integer"
         }
       },
-      "name": "task",
+      "name": "tasks",
       "indexes": [
         {
           "columnNames": [
             "user_id"
           ],
           "composite": false,
-          "keyName": "task_user_id_index",
+          "keyName": "tasks_user_id_index",
           "constraint": false,
           "primary": false,
           "unique": false
@@ -203,16 +203,16 @@
       ],
       "checks": [],
       "foreignKeys": {
-        "task_user_id_foreign": {
-          "constraintName": "task_user_id_foreign",
+        "tasks_user_id_foreign": {
+          "constraintName": "tasks_user_id_foreign",
           "columnNames": [
             "user_id"
           ],
-          "localTableName": "task",
+          "localTableName": "tasks",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "user",
+          "referencedTableName": "users",
           "updateRule": "cascade"
         }
       },
