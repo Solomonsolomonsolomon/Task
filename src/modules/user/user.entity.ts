@@ -12,13 +12,11 @@ import {
   Property,
   wrap,
 } from '@mikro-orm/mysql';
-import { UserRepository } from './user.repository';
+
 import { Task } from '../task/task.entity';
 
-@Entity({ repository: () => UserRepository })
+@Entity({tableName:'users'})
 export class User {
-  [EntityRepositoryType]?: UserRepository;
-
   @PrimaryKey()
   id!: number;
 

@@ -2,17 +2,19 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { validate } from 'class-validator';
 import crypto from 'crypto';
 import jwt from 'jsonwebtoken';
-import { EntityManager, wrap } from '@mikro-orm/mysql';
+import { EntityManager, EntityRepository, wrap } from '@mikro-orm/mysql';
 import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
 import { User } from './user.entity';
-import { IUserRO } from './user.interface';
-import { UserRepository } from './user.repository';
+import { IUserRO } from '../../@types/user.types';
+
 import config from '../../config/config';
+import { InjectRepository } from '@mikro-orm/nestjs';
 const { SECRET } = config;
 @Injectable()
 export class UserService {
   constructor(
-    private readonly userRepository: UserRepository,
+    @InjectRepository(User)
+    private readonly userRepository: EntityRepository<User>,
     private readonly em: EntityManager,
   ) {}
 
@@ -34,6 +36,7 @@ export class UserService {
   async create(dto: CreateUserDto): Promise<IUserRO> {
     // check uniqueness of username/email
     const { username, email, password } = dto;
+  
     const exists = await this.userRepository.count({
       $or: [{ username }, { email }],
     });

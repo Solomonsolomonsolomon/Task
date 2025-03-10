@@ -7,7 +7,7 @@ import {
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserService } from '../user/user.service';
-import { IUserData } from '../user/user.interface';
+import { IUserData } from '../../@types/user.types';
 import config from '../../config/config';
 const { SECRET } = config;
 @Injectable()

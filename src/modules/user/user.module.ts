@@ -8,7 +8,7 @@ import { UserController } from './user.controller';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
-import { UserRepository } from './user.repository';
+
 import { AuthMiddleware } from '../auth/auth.middleware';
 
 @Module({
