@@ -40,15 +40,11 @@ export class EmailService {
       text: `Hello,
 
 The timer for your task "${task.description}" has expired.
-
 Description: ${task.description}
-
 Please take the necessary actions.
-
 Best regards,
 Task Management System`,
-      // You can also use HTML
-      html: `<p>Hello,</p>
+html: `<p>Hello,</p>
 <p>The timer for your task "<strong>${task.description}</strong>" has expired.</p>
 <p><strong>Description:</strong> ${task.description}</p>
 <p>Please take the necessary actions.</p>

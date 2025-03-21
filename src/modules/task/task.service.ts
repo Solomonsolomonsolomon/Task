@@ -163,7 +163,7 @@ export class TaskService {
 
   async scheduleEmail(task: Task, userEmail: string): Promise<void> {
     const delay = task.dueDate!.getTime() - Date.now();
-
+    
     if (delay <= 0) {
       console.log('Due date has already passed');
       return;
