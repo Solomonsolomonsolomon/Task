@@ -49,7 +49,7 @@ export class TaskService {
     }
     return this.repo.find({ user: userId, deletedAt: null });
   }
-
+  
   async findOne(id: number, userId: number): Promise<Task> {
     const user = await this.userRepository.findOne(userId);
     if (!user) {

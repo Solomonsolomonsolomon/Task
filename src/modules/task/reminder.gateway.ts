@@ -1,4 +1,3 @@
-// src/tasks/reminders.gateway.ts
 import {
   WebSocketGateway,
   WebSocketServer,
@@ -27,7 +26,6 @@ export class RemindersGateway
   private userSockets: Map<number, Socket> = new Map();
 
   handleConnection(client: Socket, ...args: any[]) {
-    // Extract token from query
     const configService=new ConfigService();
     const SECRET=configService.get('SECRET')
     const token = client.handshake.query.token;

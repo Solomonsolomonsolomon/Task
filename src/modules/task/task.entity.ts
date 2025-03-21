@@ -5,10 +5,7 @@ import {
   PrimaryKey,
   Property,
 } from '@mikro-orm/mysql';
-import { EntityRepository } from '@mikro-orm/mysql';
-import { TaskRepository } from './task.repository';
 import { User } from '../user/user.entity';
-
 @Entity({tableName:'tasks'})
 export class Task {
   @PrimaryKey()
@@ -43,6 +40,4 @@ export class Task {
 
   @Property({ nullable: true })
   reminderTimeGapMinutes?: number;
-
-  [EntityRepositoryType]?: TaskRepository;
 }
